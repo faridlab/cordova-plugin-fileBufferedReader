@@ -1,5 +1,6 @@
 cordova-plugin-fileBufferedReader
 =================================
+Another cordova file plugin
 
 Installation
 ============
