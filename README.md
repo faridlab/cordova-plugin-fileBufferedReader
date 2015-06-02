@@ -5,7 +5,7 @@ Another cordova file plugin
 Installation
 ============
 ```bash
-cordova plugin add https://github.com/apache/cordova-plugin-file.git
+cordova plugin add https://github.com/faridlab/cordova-plugin-fileBufferedReader.git
 ```
 
 Supported Platforms
