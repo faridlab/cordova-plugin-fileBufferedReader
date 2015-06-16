@@ -35,10 +35,11 @@ public class FileBufferedReader extends CordovaPlugin {
 
     private void read(JSONObject options, CallbackContext callbackContext) {
 
-        try {
+        File path = null;
+        File pathFile = null;
+        String contentString = null;
 
-            File path = null;
-            File pathFile = null;
+        try {
 
             if(options.getBoolean("publicDirectory")) {
 
@@ -56,13 +57,16 @@ public class FileBufferedReader extends CordovaPlugin {
                 }
             }
 
-            String contentString = convertStreamToString(new FileInputStream(pathFile));
+            contentString = convertStreamToString(new FileInputStream(pathFile));
             if("json".equals(options.getString("readAs"))) {
                 JSONObject jsonResult = new JSONObject(contentString);
                 callbackContext.success(jsonResult);
             }
-
         } catch(JSONException ex){
+            try {
+                JSONArray jsonResult = new JSONArray(contentString);
+                callbackContext.success(jsonResult);
+            } catch(JSONException exerr){}
         } catch (FileNotFoundException e){
             // LOG.d("::FileBufferedReader::", "file not found");
         } catch(Exception e){
