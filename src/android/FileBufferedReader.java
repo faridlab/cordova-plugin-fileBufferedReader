@@ -1,4 +1,4 @@
-package id.co.xinix.cordova.plugins.FileBufferedReader;
+package com.kambeeng.cordova.FileBufferedReader;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -16,8 +16,6 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import android.os.Environment;
 
-import org.apache.cordova.CallbackContext;
-
 import org.apache.cordova.LOG;
 
 public class FileBufferedReader extends CordovaPlugin {
@@ -26,8 +24,15 @@ public class FileBufferedReader extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("read")) {
-            JSONObject options = args.getJSONObject(0);
-            this.read(options, callbackContext);
+            try{
+                final JSONObject options = args.getJSONObject(0);
+                final CallbackContext cb = callbackContext;
+                cordova.getThreadPool().execute(new Runnable() {
+                    public void run() {
+                        read(options, cb);
+                    }
+                });
+            }catch(JSONException ex){}
             return true;
         }
         return false;
