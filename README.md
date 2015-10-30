@@ -18,6 +18,7 @@ Usage
 ##Read whole content of file
 
 _Example read whole json file's content_
+`Example external path: file:///storage/emulated/0/path/to/file.json`
 ```json
 [{a: 1},{a: 2},{a: 3},{a: 4},{a: 5}]
 ```
@@ -38,6 +39,7 @@ reader.then(function(result) {
 ```
 
 _Example read whole csv file's content_
+`Example external path: file:///storage/emulated/0/path/to/file.csv`
 ```csv
 Farid Hidayat, 26, Male
 Tiffany Alvord, 22, Female
