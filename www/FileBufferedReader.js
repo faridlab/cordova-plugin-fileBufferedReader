@@ -32,8 +32,8 @@ exports.read = function(arg, success, error) {
             limit: 0
         };
 
-        if(typeof(arg) === 'string') {
-            options.src = arg;
+        if(typeof(arg) === 'string') { // environment: EXTERNAL
+            options.src = arg.replace('file:///storage/emulated/0/', '');
             options.readAs = arg.split('.').pop();
         } else if(typeof(arg) === 'object') { // json object
             if(!arg.src) {
